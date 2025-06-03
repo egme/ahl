@@ -1,0 +1,10 @@
+# Binaries for programs and plugins
+ahl
+
+# Test binary, coverage, and build output
+*.test
+*.out
+coverage*
+
+# Dependency directories (vendor/)
+vendor/
