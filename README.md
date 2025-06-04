@@ -78,11 +78,11 @@ ahl --pattern 'foo=green' --pattern 'bar=yellow'
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) (to be added).
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
-See [LICENSE](LICENSE) (to be added).
+See [LICENSE](LICENSE)
 
 ## Running Tests
 
