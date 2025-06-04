@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"regexp"
 	"strings"
@@ -82,19 +83,26 @@ func main() {
 		os.Exit(1)
 	}
 
-	scanner := bufio.NewScanner(os.Stdin)
+	reader := bufio.NewReader(os.Stdin)
 	writer := bufio.NewWriter(os.Stdout)
-	for scanner.Scan() {
-		line := scanner.Text()
+	for {
+		line, err := reader.ReadString('\n')
+		if err != nil && err != io.EOF {
+			fmt.Fprintf(os.Stderr, "Error reading input: %v\n", err)
+			break
+		}
+		if len(line) == 0 && err == io.EOF {
+			break
+		}
+		line = strings.TrimRight(line, "\n")
 		if cleanup {
 			line = stripANSI(line)
 		}
 		line = highlightLine(line, patterns)
 		_, _ = writer.WriteString(line + "\n")
 		writer.Flush()
-	}
-
-	if err := scanner.Err(); err != nil {
-		fmt.Fprintf(os.Stderr, "Error reading input: %v\n", err)
+		if err == io.EOF {
+			break
+		}
 	}
 }
