@@ -56,10 +56,10 @@ func TestHighlightLine(t *testing.T) {
 	if highlighted == line {
 		t.Errorf("expected highlighted output, got unchanged line")
 	}
-	if !regexp.MustCompile("\\x1b\\[31mfoo\\x1b\\[0m").MatchString(highlighted) {
+	if !regexp.MustCompile(`\x1b\[31mfoo\x1b\[0m`).MatchString(highlighted) {
 		t.Errorf("expected foo to be highlighted in red")
 	}
-	if !regexp.MustCompile("\\x1b\\[32mbar\\x1b\\[0m").MatchString(highlighted) {
+	if !regexp.MustCompile(`\x1b\[32mbar\x1b\[0m`).MatchString(highlighted) {
 		t.Errorf("expected bar to be highlighted in green")
 	}
 }
